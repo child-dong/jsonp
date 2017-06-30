@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style>
+		body{
+			margin: 0;
+		}
+		ul{
+			margin-top: 50px;
+		}
+		ul li{
+			list-style-type: none;
+			float: left;
+			width: 300px;
+			height: 300px;
+		}
+		li img{
+			width: 90%;
+			height: 75%;
+		}
+		.pull-left{
+			float: left;
+		}
+		.clearfix:before,.clearfix:after { 
+			content: ""; 
+			display: table; 
+		}
+		.book-pic{
+			width: 200px;
+		}
+		.clearfix:after { 
+			clear: both; 
+		}
+		.clearfix { 
+			*zoom: 1; 
+		}
+	</style>
+	<script>
+		function show(data){
+			var lists = document.getElementById('lists');
+			lists.innerHTML = "";
+			for(var i=0;i<data.length;i++){	
+				var li = document.createElement('li');
+				var img = document.createElement('img');
+				var name = document.createElement('p')
+				img.src = data[i].goodsListImg;
+				name.innerHTML=data[i].goodsName;
+				li.appendChild(img);
+				li.appendChild(name);
+				lists.appendChild(li);
+			}
+			console.log(data[0].goodsListImg)
+		}
+
+		window.onload = function(){
+			var inp = document.getElementsByTagName('input')[0];
+			var btn = document.getElementById('btn');
+			var oHead = document.getElementsByTagName('head')[0];
+			btn.onclick = function(){
+				var oScript = document.createElement('script');
+				oScript.src = 'http://datainfo.duapp.com/shopdata/getGoods.php?goodsName='+inp.value+'&callback=show';
+				// oScript.src = 'jsonp.js';
+				oHead.appendChild(oScript);
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="text" value="衬衫">
+	<button id="btn">阿斗</button>
+	<ul id="lists" class="clearfix">
+		<li class="pull-left">
+				<img src="4.jpg" alt="" class="pull-left">
+				<p class='pull-left'>					
+					<a href="" id="name">javascript</a>
+				</p>
+		</li>
+	</ul>
+</body>
+</html>
